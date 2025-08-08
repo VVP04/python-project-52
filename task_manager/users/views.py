@@ -1,9 +1,12 @@
-from django.contrib.auth.models import User
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
 from task_manager.users.forms import UserRegistrationForm
 
 
@@ -39,3 +42,22 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 
     def test_func(self):
         return self.request.user == self.get_object()
+
+
+class UserLoginView(LoginView):
+    template_name = 'users/login.html'
+
+    def form_valid(self, form):
+        messages.success(self.request, _("You are logged in"))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('index')
+
+
+class UserLogoutView(LogoutView):
+    next_page = reverse_lazy('index')
+
+    def dispatch(self, request, *args, **kwargs):
+        messages.success(request, _("You are logged out"))
+        return super().dispatch(request, *args, **kwargs)
