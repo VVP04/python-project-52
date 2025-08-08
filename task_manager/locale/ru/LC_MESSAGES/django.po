@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-08 14:29+0500\n"
+"POT-Creation-Date: 2025-08-08 16:54+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,6 +41,7 @@ msgid "Task Manager"
 msgstr "Менеджер задач"
 
 #: task_manager/templates/layout.html:28
+#: task_manager/templates/users/index.html:6
 msgid "Users"
 msgstr "Пользователи"
 
@@ -74,6 +75,26 @@ msgstr "Регистрация"
 msgid "Register"
 msgstr "Зарегистрировать"
 
+#: task_manager/templates/users/index.html:11 task_manager/users/forms.py:24
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: task_manager/templates/users/index.html:12
+msgid "Full name"
+msgstr "Полное имя"
+
+#: task_manager/templates/users/index.html:13
+msgid "Creation date"
+msgstr "Дата создания"
+
+#: task_manager/templates/users/index.html:25
+msgid "Edit"
+msgstr "Изменить"
+
+#: task_manager/templates/users/index.html:27
+msgid "Delete"
+msgstr "Удалить"
+
 #: task_manager/templates/users/login.html:12
 msgid "Log in"
 msgstr "Войти"
@@ -101,10 +122,6 @@ msgstr "Имя"
 #: task_manager/users/forms.py:23
 msgid "Last name"
 msgstr "Фамилия"
-
-#: task_manager/users/forms.py:24
-msgid "Username"
-msgstr "Имя пользователя"
 
 #: task_manager/users/forms.py:32
 msgid "Passwords do not match."
