@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-05 16:36+0500\n"
+"POT-Creation-Date: 2025-08-07 18:02+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgstr "Узнать больше"
 
 #: task_manager/templates/layout.html:11
 msgid "Task Manager Hexlet"
-msgstr ""
+msgstr "Менеджер задач Hexlet"
 
 #: task_manager/templates/layout.html:20
 msgid "Task Manager"
@@ -65,5 +65,54 @@ msgid "Login"
 msgstr "Вход"
 
 #: task_manager/templates/layout.html:59
+#: task_manager/templates/users/create.html:7
 msgid "Registration"
 msgstr "Регистрация"
+
+#: task_manager/templates/users/create.html:11
+msgid "Register"
+msgstr "Зарегистрировать"
+
+#: task_manager/users/forms.py:8
+msgid "Password"
+msgstr "Пароль"
+
+#: task_manager/users/forms.py:10
+msgid "Your password must contain at least 3 characters."
+msgstr "Ваш пароль должен содержать как минимум 3 символа."
+
+#: task_manager/users/forms.py:13
+msgid "Confirm Password"
+msgstr "Подтверждение пароля"
+
+#: task_manager/users/forms.py:15
+msgid "Enter the same password again for verification."
+msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
+
+#: task_manager/users/forms.py:22
+msgid "First name"
+msgstr "Имя"
+
+#: task_manager/users/forms.py:23
+msgid "Last name"
+msgstr "Фамилия"
+
+#: task_manager/users/forms.py:24
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: task_manager/users/forms.py:32
+msgid "Passwords do not match."
+msgstr "Введенные пароли не совпадают."
+
+#: task_manager/users/views.py:20
+msgid "User created successfully"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: task_manager/users/views.py:28
+msgid "User updated successfully"
+msgstr "Пользователь успешно изменен"
+
+#: task_manager/users/views.py:38
+msgid "User deleted successfully"
+msgstr "Пользователь успешно удален"
