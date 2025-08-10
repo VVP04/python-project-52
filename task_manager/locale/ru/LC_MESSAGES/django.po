@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-08 16:54+0500\n"
+"POT-Creation-Date: 2025-08-10 11:43+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,6 +99,14 @@ msgstr "Удалить"
 msgid "Log in"
 msgstr "Войти"
 
+#: task_manager/templates/users/update.html:6
+msgid "Update user"
+msgstr "Изменение пользователя"
+
+#: task_manager/templates/users/update.html:10
+msgid "Update"
+msgstr "Изменить"
+
 #: task_manager/users/forms.py:8
 msgid "Password"
 msgstr "Пароль"
@@ -123,26 +131,45 @@ msgstr "Имя"
 msgid "Last name"
 msgstr "Фамилия"
 
-#: task_manager/users/forms.py:32
+#: task_manager/users/forms.py:32 task_manager/users/forms.py:34
+msgid "Required field"
+msgstr "Обязательное поле"
+
+#: task_manager/users/forms.py:36
+msgid "The entered password is too short. It must contain at least 3 characters."
+msgstr "Введённый пароль слишком короткий. Он должен содержать как минимум 3 символа."
+
+#: task_manager/users/forms.py:38
 msgid "Passwords do not match."
 msgstr "Введенные пароли не совпадают."
 
-#: task_manager/users/views.py:23
+#: task_manager/users/views.py:24
 msgid "User created successfully"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: task_manager/users/views.py:31
+#: task_manager/users/views.py:32
 msgid "User updated successfully"
 msgstr "Пользователь успешно изменен"
 
+#: task_manager/users/views.py:39
+msgid "You are not logged in! Please log in."
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
 #: task_manager/users/views.py:41
+msgid "You do not have permission to perform this action."
+msgstr "У вас нет прав для изменения другого пользователя."
+
+#: task_manager/users/views.py:48
 msgid "User deleted successfully"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/users/views.py:51
+#: task_manager/users/views.py:58
 msgid "You are logged in"
 msgstr "Вы залогинены"
 
-#: task_manager/users/views.py:62
+#: task_manager/users/views.py:69
 msgid "You are logged out"
 msgstr "Вы разлогинены"
+
+#~ msgid "Password must contain at least 3 characters."
+#~ msgstr "Ваш пароль должен содержать как минимум 3 символа."

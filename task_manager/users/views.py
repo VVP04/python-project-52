@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
@@ -7,7 +8,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from task_manager.users.forms import UserRegistrationForm
+from task_manager.users.forms import UserRegistrationForm, UserUpdateForm
 
 
 class UsersIndexView(ListView):
@@ -25,7 +26,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
 
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = User
-    fields = ['first_name', 'last_name', 'username']
+    form_class = UserUpdateForm
     template_name = 'users/update.html'
     success_url = reverse_lazy('users_index')
     success_message = _('User updated successfully')
@@ -33,6 +34,12 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
     def test_func(self):
         return self.request.user == self.get_object()
 
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            messages.error(self.request, _("You are not logged in! Please log in."))
+            return super(LoginRequiredMixin, self).handle_no_permission()
+        messages.error(self.request, _("You do not have permission to perform this action."))
+        return redirect('users_index')
 
 class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     model = User
