@@ -49,6 +49,13 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 
     def test_func(self):
         return self.request.user == self.get_object()
+    
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            messages.error(self.request, _("You are not logged in! Please log in."))
+            return super(LoginRequiredMixin, self).handle_no_permission()
+        messages.error(self.request, _("You do not have permission to perform this action."))
+        return redirect('users_index')
 
 
 class UserLoginView(LoginView):
