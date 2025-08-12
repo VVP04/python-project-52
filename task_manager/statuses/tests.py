@@ -2,6 +2,7 @@ import pytest
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from .models import Status
+from task_manager.tasks.models import Task
 
 User = get_user_model()
 
@@ -36,3 +37,19 @@ class TestStatusCRUD:
         url = reverse('statuses_index')
         response = client.get(url)
         assert response.status_code == 302
+    
+    def test_cannot_delete_status_in_use(self, logged_client):
+        status = Status.objects.create(name='В работе')
+        author = User.objects.get(username='user1')
+        Task.objects.create(
+            name='Test task',
+            status=status,
+            author=author
+        )
+
+        url = reverse('status_delete', args=[status.pk])
+        response = logged_client.post(url)
+
+        assert response.status_code == 302
+
+        assert Status.objects.filter(pk=status.pk).exists()
