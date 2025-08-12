@@ -7,6 +7,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.db.models import ProtectedError
 
 from task_manager.users.forms import UserRegistrationForm, UserUpdateForm
 
@@ -41,6 +42,7 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
         messages.error(self.request, _("You do not have permission to perform this action."))
         return redirect('users_index')
 
+
 class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     model = User
     template_name = 'users/delete.html'
@@ -57,6 +59,15 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
         messages.error(self.request, _("You do not have permission to perform this action."))
         return redirect('users_index')
 
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(
+                request,
+                _("It is impossible to delete the user because it is being used")
+            )
+            return redirect(self.success_url)
 
 class UserLoginView(LoginView):
     template_name = 'users/login.html'
