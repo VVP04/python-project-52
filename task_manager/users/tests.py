@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.messages import get_messages
 from django.test import TestCase
 from django.urls import reverse
+from task_manager.tasks.models import Task
+from task_manager.statuses.models import Status
 
 User = get_user_model()
 
@@ -62,3 +64,17 @@ class UserCRUDTests(TestCase):
 
         messages = list(get_messages(response.wsgi_request))
         assert "не авторизованы" in str(messages[0]).lower()
+    
+    def test_cannot_delete_user_with_tasks(self):
+        status = Status.objects.create(name='В работе')
+        
+        Task.objects.create(
+            name="Test task",
+            status=status,
+            author=self.user1
+        )
+
+        self.client.login(username='user1', password='testpass123')
+        self.client.post(reverse('user_delete', args=[self.user1.pk]))
+
+        self.assertTrue(User.objects.filter(pk=self.user1.pk).exists())
