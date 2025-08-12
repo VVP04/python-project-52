@@ -2,6 +2,7 @@ import django_filters
 from django.utils.translation import gettext_lazy as _
 from .models import Task
 from task_manager.statuses.models import Status
+from task_manager.labels.models import Label
 from django.contrib.auth import get_user_model
 
 
@@ -17,7 +18,11 @@ class TaskFilter(django_filters.FilterSet):
         queryset=User.objects.all(),
         label=_("Executor")
     )
+    labels = django_filters.ModelChoiceFilter(
+        queryset=Label.objects.all(),
+        label=_("Label")
+    )
 
     class Meta:
         model = Task
-        fields = ['status', 'executor']
+        fields = ['status', 'executor', 'labels']

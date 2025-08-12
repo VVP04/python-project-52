@@ -13,6 +13,12 @@ class Task(models.Model):
         verbose_name="Статус",
         related_name="tasks"
     )
+    labels = models.ManyToManyField(
+        'labels.Label',
+        related_name='tasks',
+        blank=True,
+        verbose_name="Метки"
+    )
     author = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
