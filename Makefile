@@ -2,16 +2,16 @@ install:
 	uv sync
 
 migrate:
-	python manage.py migrate
+	uv run python manage.py migrate
 
 collectstatic:
-	python manage.py collectstatic --noinput
+	uv run python manage.py collectstatic --noinput
 
 run:
-	python manage.py runserver
+	uv run python manage.py runserver
 
 render-start:
-	gunicorn task_manager.wsgi
+	uv run gunicorn task_manager.wsgi
 
 build:
 	./build.sh
@@ -23,8 +23,18 @@ lint-fix:
 	uv run ruff check --fix
 
 test:
-	pytest --ds=task_manager.settings --reuse-db
+	uv run pytest --ds=task_manager.settings --reuse-db
 
 coverage:
-	coverage run -m pytest --ds=task_manager.settings
-	coverage report
+	uv run coverage run -m pytest --ds=task_manager.settings
+	uv run coverage report
+
+ci-install:
+	uv sync --group dev
+
+ci-migrate:
+	uv run python manage.py migrate --noinput
+
+ci-test:
+	uv run coverage run -m pytest --ds=task_manager.settings --reuse-db
+	uv run coverage xml
