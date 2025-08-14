@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-and-sonarqube:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: uv sync --group devs
+
+      - name: Show versions
+        run: |
+          python --version
+          uv --version
+          python -c "import django,sys; print('Django', django.get_version())"
+
+      - name: Run migrations
+        run: python manage.py migrate --noinput
+
+      - name: Run tests with coverage
+        env:
+          DJANGO_SETTINGS_MODULE: task_manager.settings
+        run: |
+          coverage run -m pytest --ds=task_manager.settings --reuse-db
+          coverage xml
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=my_project_key
+            -Dsonar.organization=my_org
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.python.coverage.reportPaths=coverage.xml

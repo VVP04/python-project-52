@@ -1,0 +1,11 @@
+# .coveragerc
+[run]
+omit =
+    */migrations/*
+    */settings.py
+    */venv/*
+    */.venv/*
+
+[report]
+show_missing = True
+skip_covered = True

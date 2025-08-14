@@ -21,3 +21,6 @@ dev = [
     "pytest-django>=4.11.1",
     "ruff>=0.12.7",
 ]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-django", "coverage"]
