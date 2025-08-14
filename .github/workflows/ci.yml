@@ -10,6 +10,10 @@ jobs:
   test-and-sonarqube:
     runs-on: ubuntu-latest
 
+    env:
+        SECRET_KEY: 'django-insecure-ci-key'
+        DJANGO_SETTINGS_MODULE: task_manager.settings
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
