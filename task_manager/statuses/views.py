@@ -1,14 +1,14 @@
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib import messages
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import ProtectedError
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from .models import Status
 from .forms import StatusForm
+from .models import Status
 
 
 class StatusListView(LoginRequiredMixin, ListView):
@@ -47,6 +47,7 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
         except ProtectedError:
             messages.error(
                 self.request,
-                _("It is impossible to delete the status because it is being used")
+                _("It is impossible to delete the status \\\
+                    because it is being used")
             )
             return redirect(self.success_url)

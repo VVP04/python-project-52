@@ -1,10 +1,10 @@
 import pytest
-from django.urls import reverse
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 from task_manager.labels.models import Label
-from task_manager.tasks.models import Task
 from task_manager.statuses.models import Status
+from task_manager.tasks.models import Task
 
 User = get_user_model()
 
@@ -14,7 +14,9 @@ class TestLabelViews:
 
     @pytest.fixture
     def user(self):
-        return User.objects.create_user(username='testuser', password='password123')
+        return User.objects.create_user(
+            username='testuser', password='password123'
+            )
 
     @pytest.fixture
     def logged_client(self, client, user):
@@ -31,12 +33,18 @@ class TestLabelViews:
         assert 'Bug' in response.content.decode()
 
     def test_create_label(self, logged_client):
-        response = logged_client.post(reverse('label_create'), {'name': 'Feature'})
+        response = logged_client.post(
+            reverse('label_create'),
+            {'name': 'Feature'}
+            )
         assert response.status_code == 302
         assert Label.objects.filter(name='Feature').exists()
 
     def test_update_label(self, logged_client, label):
-        response = logged_client.post(reverse('label_update', args=[label.id]), {'name': 'Hotfix'})
+        response = logged_client.post(
+            reverse('label_update', args=[label.id]),
+            {'name': 'Hotfix'}
+            )
         assert response.status_code == 302
         label.refresh_from_db()
         assert label.name == 'Hotfix'

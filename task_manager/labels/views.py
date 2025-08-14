@@ -1,14 +1,13 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.core.exceptions import ValidationError
-from django.contrib import messages
-from django.shortcuts import redirect
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from .models import Label
 from .forms import LabelForm
+from .models import Label
 
 
 class LabelListView(LoginRequiredMixin, ListView):
@@ -45,7 +44,8 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
         if self.object.tasks.exists():
             messages.error(
                 request,
-                _("It is impossible to delete the label because it is being used")
+                _("It is impossible to delete the label \\\
+                    because it is being used")
             )
             return redirect('labels_index')
             

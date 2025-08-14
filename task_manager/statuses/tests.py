@@ -1,16 +1,19 @@
 import pytest
-from django.urls import reverse
 from django.contrib.auth import get_user_model
-from .models import Status
+from django.urls import reverse
+
 from task_manager.tasks.models import Task
 
+from .models import Status
+
 User = get_user_model()
+
 
 @pytest.mark.django_db
 class TestStatusCRUD:
     @pytest.fixture
     def logged_client(self, client):
-        user = User.objects.create_user(username='user1', password='testpass123')
+        User.objects.create_user(username='user1', password='testpass123')
         client.login(username='user1', password='testpass123')
         return client
 

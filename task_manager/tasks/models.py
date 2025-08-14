@@ -1,8 +1,10 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
+
 from task_manager.statuses.models import Status
 
 User = get_user_model()
+
 
 class Task(models.Model):
     name = models.CharField(max_length=100, verbose_name="Имя")
@@ -33,7 +35,10 @@ class Task(models.Model):
         blank=True,
         null=True
     )
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Дата создания"
+        )
 
     def __str__(self):
         return self.name

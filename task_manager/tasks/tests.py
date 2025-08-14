@@ -1,17 +1,26 @@
 import pytest
-from django.urls import reverse
-from django.contrib.messages import get_messages
 from django.contrib.auth import get_user_model
+from django.contrib.messages import get_messages
+from django.urls import reverse
+
 from task_manager.statuses.models import Status
+
 from .models import Task
 
 User = get_user_model()
 
+
 @pytest.mark.django_db
 class TestTaskCRUD:
     def setup_method(self):
-        self.user1 = User.objects.create_user(username='user1', password='pass123')
-        self.user2 = User.objects.create_user(username='user2', password='pass123')
+        self.user1 = User.objects.create_user(
+            username='user1',
+            password='pass123'
+            )
+        self.user2 = User.objects.create_user(
+            username='user2',
+            password='pass123'
+            )
         self.status = Status.objects.create(name='Новый')
 
     def test_create_task(self, client):

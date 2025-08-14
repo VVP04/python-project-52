@@ -1,6 +1,7 @@
 from django import forms
-from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
+
 
 class BaseUserForm(forms.ModelForm):
     password = forms.CharField(
@@ -46,7 +47,11 @@ class BaseUserForm(forms.ModelForm):
         if not password_confirm:
             self.add_error('password_confirm', _('Required field'))
         if password and len(password) < 3:
-            self.add_error('password_confirm', _("The entered password is too short. It must contain at least 3 characters."))
+            self.add_error(
+                'password_confirm', 
+                _("The entered password is too short. \\\
+                    It must contain at least 3 characters.")
+                )
         if password and password_confirm and password != password_confirm:
             self.add_error('password_confirm', _("Passwords do not match."))
         return cleaned_data
@@ -57,7 +62,6 @@ class BaseUserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-
 
 
 class UserRegistrationForm(BaseUserForm):
