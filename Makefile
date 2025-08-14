@@ -33,7 +33,7 @@ ci-install:
 	uv sync --group dev
 
 ci-migrate:
-	uv run python manage.py makemigrations && \
+	uv run python manage.py makemigrations --noinput && \
 	uv run python manage.py migrate --noinput
 
 ci-test:
