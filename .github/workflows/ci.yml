@@ -27,13 +27,17 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Install dependencies
-        run: uv sync --group devs
+        run: uv sync --group dev
 
       - name: Show versions
         run: |
           python --version
           uv --version
           python -c "import django,sys; print('Django', django.get_version())"
+      
+      - name: Run Ruff linter
+        run: |
+          ruff check .
 
       - name: Run migrations
         run: python manage.py migrate --noinput
