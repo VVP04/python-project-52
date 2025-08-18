@@ -29,8 +29,8 @@ test:
 	uv run pytest --ds=task_manager.settings --reuse-db
 
 coverage:
-	uv run coverage run -m pytest --ds=task_manager.settings
-	uv run coverage report
+	uv run coverage run --omit='*/migrations/*,*/settings.py,*/venv/*,*/.venv/*' -m pytest --ds=task_manager.settings
+	uv run coverage report --show-missing --skip-covered
 
 ci-install:
 	uv sync --group dev
@@ -40,5 +40,6 @@ ci-migrate:
 	uv run python manage.py migrate --noinput
 
 ci-test:
-	uv run coverage run -m pytest --ds=task_manager.settings --reuse-db
+	uv run coverage run --omit='*/migrations/*,*/settings.py,*/venv/*,*/.venv/*' -m pytest --ds=task_manager.settings --reuse-db
 	uv run coverage xml
+	uv run coverage report --show-missing --skip-covered
