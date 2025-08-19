@@ -44,7 +44,7 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
         if self.object.tasks.exists():
             messages.error(
                 request,
-                _("It is impossible to delete the label \\\
+                _("It is impossible to delete the label \
                     because it is being used")
             )
             return redirect('labels_index')

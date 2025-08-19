@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -77,13 +76,6 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
         if self.object.author != request.user:
             messages.error(request, _("Only the author can delete an issue."))
             return redirect(self.success_url)
-        try:
-            response = super().post(request, *args, **kwargs)
-            messages.success(request, self.success_message)
-            return response
-        except ProtectedError:
-            messages.error(
-                request,
-                _("Cannot delete task because it is being used.")
-            )
-            return redirect(self.success_url)
+        response = super().post(request, *args, **kwargs)
+        messages.success(request, self.success_message)
+        return response

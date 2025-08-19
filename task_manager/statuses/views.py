@@ -47,7 +47,7 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
         except ProtectedError:
             messages.error(
                 self.request,
-                _("It is impossible to delete the status \\\
+                _("It is impossible to delete the status \
                     because it is being used")
             )
             return redirect(self.success_url)
