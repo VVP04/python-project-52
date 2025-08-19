@@ -1,9 +1,10 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
 
-class BaseUserForm(forms.ModelForm):
+class CreateUserForm(UserCreationForm):
     password = forms.CharField(
         required=False,
         label=_("Password"),
@@ -64,9 +65,9 @@ class BaseUserForm(forms.ModelForm):
         return user
 
 
-class UserRegistrationForm(BaseUserForm):
+class UserRegistrationForm(CreateUserForm):
     pass
 
 
-class UserUpdateForm(BaseUserForm):
+class UserUpdateForm(CreateUserForm):
     pass
