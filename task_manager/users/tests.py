@@ -25,8 +25,8 @@ class UserCRUDTests(TestCase):
         url = reverse('user_create')
         data = {
             'username': 'newuser',
-            'password': 'newpassword123',
-            'password_confirm': 'newpassword123',
+            'password1': 'newpass123',   # <-- изменено
+            'password2': 'newpass123',   # <-- изменено
             'first_name': 'New',
             'last_name': 'User'
         }
@@ -48,13 +48,15 @@ class UserCRUDTests(TestCase):
                 'username': 'user1',
                 'first_name': 'Updated',
                 'last_name': 'User',
-                'password': 'testpass123',
-                'password_confirm': 'testpass123',
+                'password1': 'newpass123',    # <-- изменено
+                'password2': 'newpass123',    # <-- изменено
             }
         )
         self.assertRedirects(response, reverse('users_index'))
         self.user1.refresh_from_db()
         self.assertEqual(self.user1.first_name, 'Updated')
+        # Проверим, что пароль реально поменялся
+        self.assertTrue(self.user1.check_password('newpass123'))
 
     def test_user_update_unauthenticated(self):
         url = reverse('user_update', kwargs={'pk': self.user1.pk})
