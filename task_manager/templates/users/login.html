@@ -3,13 +3,12 @@
 {% load i18n %}
 
 {% block content %}
-<h1 class="my-4">{% trans "Login" %}</h1>
-
-<form action="{% url 'login' %}" method="post">
+<h2 class="my-4">{% trans "Login" %}</h2>
+  
+<form method="post" class="form">
   {% csrf_token %}
   {% bootstrap_form form %}
-  <input type="hidden" name="next" value="{{ request.GET.next }}">
-  <input class="btn btn-primary" type="submit" value="{% trans 'Log in' %}">
+  {% trans 'Log in' as login_text %}
+  {% bootstrap_button login_text button_type="submit" button_class="btn-primary" %}
 </form>
-
 {% endblock %}
