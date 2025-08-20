@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-20 16:29+0500\n"
+"POT-Creation-Date: 2025-08-20 17:02+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,6 +38,24 @@ msgid ""
 "used"
 msgstr "Невозможно удалить метку, потому что она используется"
 
+#: task_manager/statuses/forms.py:11
+#: task_manager/templates/labels/index.html:13
+#: task_manager/templates/statuses/index.html:14
+#: task_manager/templates/tasks/index.html:38
+msgid "Name"
+msgstr "Имя"
+
+#: task_manager/statuses/models.py:13 task_manager/tasks/filters.py:16
+#: task_manager/templates/tasks/index.html:39
+#: task_manager/templates/tasks/show.html:31
+msgid "Status"
+msgstr "Статус"
+
+#: task_manager/statuses/models.py:14 task_manager/templates/layout.html:33
+#: task_manager/templates/statuses/index.html:7
+msgid "Statuses"
+msgstr "Статусы"
+
 #: task_manager/statuses/views.py:25
 msgid "Status successfully created"
 msgstr "Статус успешно создан"
@@ -55,11 +73,6 @@ msgid ""
 "It is impossible to delete the status                     because it is "
 "being used"
 msgstr "Невозможно удалить статус, потому что он используется"
-
-#: task_manager/tasks/filters.py:16 task_manager/templates/tasks/index.html:39
-#: task_manager/templates/tasks/show.html:31
-msgid "Status"
-msgstr "Статус"
 
 #: task_manager/tasks/filters.py:20 task_manager/templates/tasks/index.html:41
 #: task_manager/templates/tasks/show.html:21
@@ -131,12 +144,6 @@ msgstr "Да, удалить"
 msgid "Labels"
 msgstr "Метки"
 
-#: task_manager/templates/labels/index.html:13
-#: task_manager/templates/statuses/index.html:14
-#: task_manager/templates/tasks/index.html:38
-msgid "Name"
-msgstr "Имя"
-
 #: task_manager/templates/labels/index.html:14
 #: task_manager/templates/statuses/index.html:15
 #: task_manager/templates/tasks/index.html:42
@@ -147,6 +154,7 @@ msgstr "Дата создания"
 
 #: task_manager/templates/labels/index.html:25
 #: task_manager/templates/labels/update.html:11
+#: task_manager/templates/statuses/update.html:12
 #: task_manager/templates/tasks/index.html:61
 #: task_manager/templates/tasks/update.html:11
 #: task_manager/templates/users/update.html:10
@@ -181,11 +189,6 @@ msgstr "Менеджер задач"
 #: task_manager/templates/users/index.html:6
 msgid "Users"
 msgstr "Пользователи"
-
-#: task_manager/templates/layout.html:33
-#: task_manager/templates/statuses/index.html:7
-msgid "Statuses"
-msgstr "Статусы"
 
 #: task_manager/templates/layout.html:39
 #: task_manager/templates/tasks/index.html:6
