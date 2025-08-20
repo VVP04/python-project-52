@@ -101,7 +101,9 @@ class UserLoginView(SuccessMessageMixin, LoginView):
     form_class = UserLoginForm
     template_name = 'users/login.html'
     success_message = _("You are logged in")
-    success_url = reverse_lazy('index')
+    
+    def get_success_url(self):
+        return reverse_lazy('index')
 
 
 class UserLogoutView(LogoutView):
