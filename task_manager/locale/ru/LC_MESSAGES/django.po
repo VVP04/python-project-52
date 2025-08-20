@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-20 17:02+0500\n"
+"POT-Creation-Date: 2025-08-20 17:10+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,20 +38,20 @@ msgid ""
 "used"
 msgstr "Невозможно удалить метку, потому что она используется"
 
-#: task_manager/statuses/forms.py:11
+#: task_manager/statuses/forms.py:11 task_manager/statuses/models.py:10
 #: task_manager/templates/labels/index.html:13
 #: task_manager/templates/statuses/index.html:14
 #: task_manager/templates/tasks/index.html:38
 msgid "Name"
 msgstr "Имя"
 
-#: task_manager/statuses/models.py:13 task_manager/tasks/filters.py:16
+#: task_manager/statuses/models.py:18 task_manager/tasks/filters.py:16
 #: task_manager/templates/tasks/index.html:39
 #: task_manager/templates/tasks/show.html:31
 msgid "Status"
 msgstr "Статус"
 
-#: task_manager/statuses/models.py:14 task_manager/templates/layout.html:33
+#: task_manager/statuses/models.py:19 task_manager/templates/layout.html:33
 #: task_manager/templates/statuses/index.html:7
 msgid "Statuses"
 msgstr "Статусы"
@@ -235,7 +235,7 @@ msgstr "Нет статусов"
 
 #: task_manager/templates/statuses/update.html:7
 msgid "Edit status"
-msgstr "Изменить"
+msgstr "Изменение статуса"
 
 #: task_manager/templates/tasks/create.html:6
 #: task_manager/templates/tasks/index.html:9
