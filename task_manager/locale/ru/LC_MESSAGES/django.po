@@ -66,7 +66,7 @@ msgstr "Статус успешно изменен"
 
 #: task_manager/statuses/views.py:40
 msgid "Status successfully deleted"
-msgstr "Статус успешно удалён"
+msgstr "Статус успешно удален"
 
 #: task_manager/statuses/views.py:50
 msgid ""
