@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -47,6 +48,9 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
                 _("It is impossible to delete the label \
                     because it is being used")
             )
-            return redirect('labels_index')
+            return redirect(self.success_url)
             
-        return super().delete(request, *args, **kwargs)
+
+        response = super().post(request, *args, **kwargs)
+        messages.success(self.request, self.success_message)
+        return response
