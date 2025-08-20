@@ -8,7 +8,10 @@
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <button type="submit" class="btn btn-primary">{% trans "Update" %}</button>
+        {% block form_buttons %}
+            {% trans "Update" as update_text %}
+            {% bootstrap_button update_text button_type="submit" button_class="btn-primary" %}
+        {% endblock %}
     </form>
 </div>
 {% endblock %}
