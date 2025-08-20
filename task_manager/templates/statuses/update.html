@@ -9,7 +9,8 @@
         {% csrf_token %}
         {% bootstrap_form form %}
         {% block form_buttons %}
-            {% bootstrap_button "Изменить" button_type="submit" button_class="btn-primary" %}
+            {% trans "Update" as update_text %}
+            {% bootstrap_button update_text button_type="submit" button_class="btn-primary" %}
         {% endblock %}
     </form>
 </div>
