@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from task_manager.users.forms import UserRegistrationForm, UserUpdateForm
+from task_manager.users.forms import UserRegistrationForm, UserUpdateForm, UserLoginForm
 
 
 class UsersIndexView(ListView):
@@ -93,15 +93,11 @@ class UserDeleteView(
             return redirect(self.success_url)
 
 
-class UserLoginView(LoginView):
+class UserLoginView(SuccessMessageMixin, LoginView):
+    form_class = UserLoginForm
     template_name = 'users/login.html'
-
-    def form_valid(self, form):
-        messages.success(self.request, _("You are logged in"))
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse_lazy('index')
+    success_message = _("You are logged in")
+    success_url = reverse_lazy('index')
 
 
 class UserLogoutView(LogoutView):

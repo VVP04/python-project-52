@@ -1,18 +1,18 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
 
 class UserCreateForm(UserCreationForm):
     password1 = forms.CharField(
-        required=False,
+        required=True,
         label=_("Password"),
         widget=forms.PasswordInput,
         help_text=_("Your password must contain at least 3 characters.")
     )
     password2 = forms.CharField(
-        required=False,
+        required=True,
         label=_("Confirm Password"),
         widget=forms.PasswordInput,
         help_text=_("Enter the same password again for verification.")
@@ -82,3 +82,14 @@ class UserUpdateForm(UserCreateForm):
             )
 
         return username
+
+
+class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(
+        label=_('Username'),
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    password = forms.CharField(
+        label=_("Password"),
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )

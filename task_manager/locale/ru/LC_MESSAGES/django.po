@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-19 17:41+0500\n"
+"POT-Creation-Date: 2025-08-20 12:39+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,19 +70,19 @@ msgstr "Исполнитель"
 msgid "Label"
 msgstr "Метка"
 
-#: task_manager/tasks/views.py:54
+#: task_manager/tasks/views.py:53
 msgid "Task successfully created"
 msgstr "Задача успешно создана"
 
-#: task_manager/tasks/views.py:66
+#: task_manager/tasks/views.py:65
 msgid "Task successfully updated"
 msgstr "Задача успешно создана"
 
-#: task_manager/tasks/views.py:73
+#: task_manager/tasks/views.py:72
 msgid "Task successfully deleted"
 msgstr "Задача успешно удалена"
 
-#: task_manager/tasks/views.py:78
+#: task_manager/tasks/views.py:77
 msgid "Only the author can delete an issue."
 msgstr "Удалять задачу может только её автор"
 
@@ -287,7 +287,8 @@ msgstr "Удаление пользователя"
 msgid "Are you sure you want to delete %(username)s?"
 msgstr "Вы уверены, что хотите удалить %(username)s?"
 
-#: task_manager/templates/users/index.html:11 task_manager/users/forms.py:26
+#: task_manager/templates/users/index.html:11 task_manager/users/forms.py:32
+#: task_manager/users/forms.py:89
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -295,7 +296,7 @@ msgstr "Имя пользователя"
 msgid "Full name"
 msgstr "Полное имя"
 
-#: task_manager/templates/users/login.html:12
+#: task_manager/templates/users/login.html:11
 msgid "Log in"
 msgstr "Войти"
 
@@ -303,7 +304,7 @@ msgstr "Войти"
 msgid "Update user"
 msgstr "Изменение пользователя"
 
-#: task_manager/users/forms.py:10
+#: task_manager/users/forms.py:10 task_manager/users/forms.py:93
 msgid "Password"
 msgstr "Пароль"
 
@@ -319,21 +320,22 @@ msgstr "Подтверждение пароля"
 msgid "Enter the same password again for verification."
 msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
 
-#: task_manager/users/forms.py:24
+#: task_manager/users/forms.py:30
 msgid "First name"
 msgstr "Имя"
 
-#: task_manager/users/forms.py:25
+#: task_manager/users/forms.py:31
 msgid "Last name"
 msgstr "Фамилия"
 
-#: task_manager/users/forms.py:41
+#: task_manager/users/forms.py:47
 msgid "Passwords do not match."
 msgstr "Введенные пароли не совпадают."
 
-#: task_manager/users/forms.py:46
+#: task_manager/users/forms.py:52
 msgid ""
-"The entered password is too short. It must contain at least 3 characters."
+"The entered password is too short.                         It must contain "
+"at least 3 characters."
 msgstr ""
 "Введённый пароль слишком короткий. Он должен содержать как минимум 3 символа."
 
@@ -363,10 +365,10 @@ msgid ""
 "used"
 msgstr "Невозможно удалить пользователя, потому что он используется"
 
-#: task_manager/users/views.py:100
+#: task_manager/users/views.py:99
 msgid "You are logged in"
 msgstr "Вы залогинены"
 
-#: task_manager/users/views.py:111
+#: task_manager/users/views.py:107
 msgid "You are logged out"
 msgstr "Вы разлогинены"
