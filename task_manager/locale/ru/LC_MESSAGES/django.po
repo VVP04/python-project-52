@@ -120,7 +120,7 @@ msgstr "Задача успешно создана"
 
 #: task_manager/tasks/views.py:65
 msgid "Task successfully updated"
-msgstr "Задача успешно создана"
+msgstr "Задача успешно изменена"
 
 #: task_manager/tasks/views.py:72
 msgid "Task successfully deleted"
