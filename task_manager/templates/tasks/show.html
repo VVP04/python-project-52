@@ -20,8 +20,8 @@
                 <div class="row p-1">
                     <div class="col">{% trans "Executor" %}</div>
                     <div class="col">
-                        {% if task.assigned_to %}
-                            {{ task.assigned_to.get_full_name|default:task.assigned_to.username }}
+                        {% if task.executor %}
+                            {{ task.executor.get_full_name|default:task.executor.username }}
                         {% else %}
                             None
                         {% endif %}
