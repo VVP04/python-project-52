@@ -19,6 +19,10 @@ class UserCRUDTests(TestCase):
         self.user2 = User.objects.get(pk=2)
         self.user3 = User.objects.get(pk=3)
 
+        for user in [self.user1, self.user2, self.user3]:
+            user.set_password('testpass123')
+            user.save()
+
     def test_user_registration(self):
         initial_users = User.objects.count()
 
@@ -67,10 +71,10 @@ class UserCRUDTests(TestCase):
 
         messages = list(get_messages(response.wsgi_request))
         assert "не авторизованы" in str(messages[0]).lower()
-    
+
     def test_cannot_delete_user_with_tasks(self):
         status = Status.objects.create(name='В работе')
-        
+
         Task.objects.create(
             name="Test task",
             status=status,

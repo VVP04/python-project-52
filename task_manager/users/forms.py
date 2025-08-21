@@ -1,7 +1,9 @@
 from django import forms
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
+
+User = get_user_model()
 
 
 class UserCreateForm(UserCreationForm):
@@ -17,6 +19,7 @@ class UserCreateForm(UserCreationForm):
         widget=forms.PasswordInput,
         help_text=_("Enter the same password again for verification.")
     )
+    
     class Meta:
         model = User
         fields = [
@@ -25,7 +28,7 @@ class UserCreateForm(UserCreationForm):
             'username',
             'password1',
             'password2'
-            ]
+        ]
         labels = {
             'first_name': _('First name'),
             'last_name': _('Last name'),

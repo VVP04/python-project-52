@@ -1,6 +1,6 @@
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import ProtectedError
@@ -14,6 +14,8 @@ from task_manager.users.forms import (
     UserRegistrationForm,
     UserUpdateForm,
 )
+
+User = get_user_model()
 
 
 class UsersIndexView(ListView):

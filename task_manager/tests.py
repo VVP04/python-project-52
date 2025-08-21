@@ -1,7 +1,8 @@
 import types
 
 import pytest
-from django.contrib.auth.models import AnonymousUser, User
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AnonymousUser
 from django.urls import reverse
 
 from task_manager.rollbar_middleware import CustomRollbarNotifierMiddleware
@@ -33,10 +34,14 @@ def test_get_extra_data():
 
 @pytest.mark.django_db
 def test_get_payload_data_authenticated_user(db):
+    User = get_user_model()
+    
     user = User.objects.create_user(
         username='testuser',
         email='test@example.com',
-        password='pass'
+        password='pass',
+        first_name='Test',
+        last_name='User'
     )
     request = types.SimpleNamespace()
     request.user = user
