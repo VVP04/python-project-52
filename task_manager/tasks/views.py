@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -65,17 +65,19 @@ class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = _("Task successfully updated")
 
 
-class TaskDeleteView(LoginRequiredMixin, DeleteView):
+class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin,
+                     UserPassesTestMixin, DeleteView):
     model = Task
     template_name = 'tasks/delete.html'
     success_url = reverse_lazy('tasks_index')
     success_message = _("Task successfully deleted")
-    
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        if self.object.author != request.user:
-            messages.error(request, _("Only the author can delete an issue."))
-            return redirect(self.success_url)
-        response = super().post(request, *args, **kwargs)
-        messages.success(request, self.success_message)
-        return response
+
+    def test_func(self):
+        task = self.get_object()
+        return task.author == self.request.user
+
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            return super().handle_no_permission()
+        messages.error(self.request, _("Only the author can delete a task."))
+        return redirect(self.success_url)
