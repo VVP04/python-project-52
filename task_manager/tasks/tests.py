@@ -74,4 +74,4 @@ class TestTaskCRUD:
         response = client.post(url)
         assert Task.objects.count() == 1
         messages = list(get_messages(response.wsgi_request))
-        assert "только её автор" in str(messages[0])
+        assert "только ее автор" in str(messages[0])
