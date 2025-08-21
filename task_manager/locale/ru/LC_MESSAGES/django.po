@@ -167,7 +167,7 @@ msgstr "Вы уверены, что хотите удалить %(label)s?"
 #: task_manager/templates/tasks/delete.html:12
 #: task_manager/templates/users/delete.html:12
 msgid "Yes, delete"
-msgstr "Удалить"
+msgstr "Да, удалить"
 
 #: task_manager/templates/labels/index.html:25
 #: task_manager/templates/labels/update.html:11
