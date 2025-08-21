@@ -128,7 +128,7 @@ msgstr "Задача успешно удалена"
 
 #: task_manager/tasks/views.py:77
 msgid "Only the author can delete an issue."
-msgstr "Удалять задачу может только её автор"
+msgstr "Задачу может удалить только ее автор"
 
 #: task_manager/templates/index.html:10
 msgid "Hello from Hexlet!"
